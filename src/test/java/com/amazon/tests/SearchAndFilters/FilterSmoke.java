@@ -37,6 +37,7 @@ public class FilterSmoke  extends BaseTest {
         int settable_hr =sf.setHigherPriceRange(hr);
         Assert.assertTrue(sf.isPriceWithinTheSetRange(settable_lr,settable_hr),"price filter not working");
         //added price filter test validation
+        //improved wait handling
     }
 
     @DataProvider(name="brandSelector")
