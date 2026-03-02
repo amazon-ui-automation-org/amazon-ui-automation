@@ -15,7 +15,7 @@ public class Login_smoke extends BaseTest {
     public void verifyUserCanLoginWithValidCreds() throws InterruptedException {
        // m=3;
         //System.out.println(m);
-        m2();
+        //m2();
         LoginPage lp = new LoginPage(driver);
         lp.clickSignIn();
         lp.enterMailORNum(phoneNum);
