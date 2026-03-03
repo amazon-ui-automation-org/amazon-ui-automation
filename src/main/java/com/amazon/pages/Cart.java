@@ -9,13 +9,13 @@ import java.util.List;
 
 public class Cart {
    private WebDriver driver;
-   private WaitUtils wait;
+  private WaitUtils wait;
    private By prodCard = By.xpath("//div[contains(@class,'puis-card-container')]");
     private By addToCartButtonLoc = By.name("submit.addToCart");
     private By cartPageLink = By.id("nav-cart-count-container");
     private By cartPageContainer= By.xpath("//ul[@data-name='Active Items']");
     public Cart(WebDriver driver){
-        this.driver = driver;
+       this.driver = driver;
         this.wait = new WaitUtils(driver);
 
     }
@@ -30,6 +30,8 @@ public class Cart {
 //       WebElement addToCartButton = firstCard.findElement(addToCartButtonLoc);
 //        wait.waitForElementToBeClickable(addToCartButton);
 //          addToCartButton.click();
+
+
     }
 
     public void openCartPage(){
@@ -43,6 +45,10 @@ public class Cart {
         wait.waitForElementToBeVisible(cartPageContainer);
         return driver.findElement(cartPageContainer).isDisplayed();
     }
+
+
+
+
 
 
 
