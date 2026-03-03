@@ -10,12 +10,10 @@ public class LoginsmokeTest extends BaseTest {
     String password = "SAIBABA123";
 
 
-    @Test
-
+    @Test(groups = "smoke")
     public void verifyUserCanLoginWithValidCreds() throws InterruptedException {
        // m=3;
         //System.out.println(m);
-       // m2();
         LoginPage lp = new LoginPage(driver);
         lp.clickSignIn();
         lp.enterMailORNum(phoneNum);
