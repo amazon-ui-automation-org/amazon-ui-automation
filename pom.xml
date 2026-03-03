@@ -63,11 +63,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
-<<<<<<< HEAD
-=======
-                <configuration>
-                </configuration>
->>>>>>> abf3698d6f904d58cd36ab3f38f67928fe1b2c2d
             </plugin>
 
         </plugins>
