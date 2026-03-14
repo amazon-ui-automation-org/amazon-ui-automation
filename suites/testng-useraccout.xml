@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="UserAcoountSuite">
+
+    <test name="UserAccountTests">
+
+        <packages>
+            <package name="com.amazon.tests.useraccount"/>
+        </packages>
+
+    </test>
+
+</suite>
