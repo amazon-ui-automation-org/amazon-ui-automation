@@ -17,6 +17,6 @@ public class cartSmoke extends BaseTest {
         c.openCartPage();
         Assert.assertTrue(c.isCartPageNonEmpty(),"cart functionality broken");
 
-
+// added comment
     }
 }

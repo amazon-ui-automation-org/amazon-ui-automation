@@ -48,7 +48,7 @@ public class FilterSmoke  extends BaseTest {
 
                 {"Apple"},
                 {"Samsung"},
-                {"micromax"}
+                {"micro"}
         };
     }
 
