@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Amazon Automation Suite">
+
+    <test name="Amazon Tests">
+
+        <classes>
+            <class name="com.amazon.tests.cart.cartSmoke"/>
+            <class name="com.amazon.tests.useraccount.Login_smoke"/>
+            <class name="com.amazon.tests.SearchAndFilters.FilterSmoke"/>
+            <class name="com.amazon.tests.SearchAndFilters.searchSmoke"/>
+        </classes>
+
+    </test>
+
+</suite>
