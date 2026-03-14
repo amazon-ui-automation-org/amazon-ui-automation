@@ -70,7 +70,7 @@ return new Object[][]{
                 {"<>?/:;\"'[]\\|`~"}
         };
     }
-
+// comment
     @Test(dataProvider="specialCharacterQuery")
     public void verifySearchInputAcceptsSpecialCharacters(String query){
         searchAndFilters sf = new searchAndFilters(driver);
