@@ -63,6 +63,23 @@ return new Object[][]{
     }
 
 
+@DataProvider(name = "specialCharacterQuery")
+    public Object[][] specialCharacterQuery(){
+        return new Object[][]{
+                {"!@#$%^&*()"},
+                {"<>?/:;\"'[]\\|`~"}
+        };
+    }
+
+    @Test(dataProvider="specialCharacterQuery")
+    public void verifySearchInputAcceptsSpecialCharacters(String query){
+        searchAndFilters sf = new searchAndFilters(driver);
+        String urlBeforeSearch = sf.getCurrentURL();
+        sf.enterSearchQuery(query);
+        sf.clickSearchButton();
+        Assert.assertFalse(sf.isURLRefreshed(urlBeforeSearch),"Home page not loaded on blank search");
+        // this assertion is to validate that search is performed and user is not redirected to home page on entering special characters in search input. We are not validating the relevance of search results for special character query as it may vary based on the search algorithm and product catalog.
+    }
 
 
 
