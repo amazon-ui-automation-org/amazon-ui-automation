@@ -23,7 +23,7 @@ pipeline {
 
         stage('Publish Test Results') {
             steps {
-                publishTestNGResults testResultsPattern: '**/testng-results.xml'
+               testNG testResultsPattern: '**/testng-results.xml'
             }
         }
 
