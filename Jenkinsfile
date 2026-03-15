@@ -23,7 +23,13 @@ pipeline {
 
         stage('Publish Test Results') {
             steps {
-               testNG testResultsPattern: 'target/surefire-reports/testng-results.xml'
+                step([
+                    $class: 'Publisher',
+                    reportFilenamePattern: 'testng-results.xml',
+                    reportTitle: 'TestNG Results',
+                    reportDirectory: 'target/surefire-reports',
+                    failOnError: true
+                ])
             }
         }
 
