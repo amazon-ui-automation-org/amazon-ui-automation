@@ -23,7 +23,7 @@ pipeline {
 
         stage('Publish Test Results') {
             steps {
-                publishTestNGResults testResultsPattern: '**/testng-results.xml'
+                testNG reportFilenamePattern: 'target/surefire-reports/testng-results.xml'
             }
         }
 
@@ -31,7 +31,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: '**/test-output/**'
+            archiveArtifacts artifacts: 'target/surefire-reports/**', allowEmptyArchive: true
         }
     }
 }
