@@ -5,7 +5,7 @@
 
         <classes>
             <class name="com.amazon.tests.cart.cartSmoke"/>
-            <class name="com.amazon.tests.useraccount.Login_smoke"/>
+            <class name="com.amazon.tests.useraccount.LoginsmokeTest"/>
             <class name="com.amazon.tests.SearchAndFilters.FilterSmoke"/>
             <class name="com.amazon.tests.SearchAndFilters.searchSmoke"/>
         </classes>
