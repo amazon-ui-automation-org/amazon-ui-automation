@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 public class cartSmoke extends BaseTest {
    @Test
     public void verifyUserCanAddProductTOCart() {
+       //comment cart
         searchAndFilters sf = new searchAndFilters(driver);
         Cart c = new Cart(driver);
         sf.enterSearchQuery("iphone");
@@ -18,5 +19,6 @@ public class cartSmoke extends BaseTest {
         Assert.assertTrue(c.isCartPageNonEmpty(),"cart functionality broken");
 
 // added comment
+       //fhfh
     }
 }
