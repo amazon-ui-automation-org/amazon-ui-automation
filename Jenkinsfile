@@ -23,13 +23,7 @@ pipeline {
 
         stage('Publish Test Results') {
             steps {
-                step([
-                    $class: 'Publisher',
-                    reportFilenamePattern: 'testng-results.xml',
-                    reportTitle: 'TestNG Results',
-                    reportDirectory: 'target/surefire-reports',
-                    failOnError: true
-                ])
+                testNG testResultsPattern: 'target/surefire-reports/testng-results.xml'
             }
         }
 
@@ -37,7 +31,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: '**/test-output/**'
+            archiveArtifacts artifacts: 'target/surefire-reports/**', allowEmptyArchive: true
         }
     }
 }
