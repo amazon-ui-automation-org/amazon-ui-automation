@@ -16,51 +16,48 @@ pipeline {
         }
 
         stage('Run Tests') {
+            steps {
+                script {
 
-                   steps {
+                    // Pull Request Build
+                    if (env.CHANGE_ID) {
 
-                       script {
+                        echo "PR detected → Running SMOKE suite"
+                        bat "mvn clean test -DsuiteXmlFile=suites/testng-smoke.xml"
 
-                           // Pull Request Build
-                           if (env.CHANGE_ID) {
+                    }
 
-                               echo "PR detected → Running SMOKE suite"
+                    // Main branch build
+                    else if (env.BRANCH_NAME == "main") {
 
-                               bat "mvn clean test -DsuiteXmlFile=suites/testng-smoke.xml"
+                        echo "Main branch → Running FULL REGRESSION"
+                        bat "mvn clean test -DsuiteXmlFile=suites/testng-regression.xml"
 
-                           }
+                    }
 
-                           // Main branch build
-                           else if (env.BRANCH_NAME == "main") {
+                    // Feature branch build
+                    else if (env.BRANCH_NAME.startsWith("feature/")) {
 
-                               echo "Main branch → Running FULL REGRESSION"
+                        def feature = env.BRANCH_NAME.split("/")[1]
 
-                               bat "mvn clean test -DsuiteXmlFile=suites/testng-regression.xml"
+                        echo "Feature branch detected: ${feature}"
+                        echo "Running FEATURE suite"
 
-                           }
+                        bat "mvn clean test -DsuiteXmlFile=suites/testng-${feature}.xml"
 
-                           // Feature branch build
-                           else if (env.BRANCH_NAME.startsWith("feature/")) {
+                    }
 
-                               def feature = env.BRANCH_NAME.split("/")[1]
+                    // Other branches
+                    else {
 
-                               echo "Feature branch detected: ${feature}"
+                        echo "Other branch → Running SMOKE suite"
+                        bat "mvn clean test -DsuiteXmlFile=suites/testng-smoke.xml"
 
-                               echo "Running FEATURE suite"
+                    }
 
-                               bat "mvn clean test -DsuiteXmlFile=suites/testng-${feature}.xml"
-
-                           }
-
-                           // Other branches
-                           else {
-
-                               echo "Other branch → Running SMOKE suite"
-
-                               bat "mvn clean test -DsuiteXmlFile=suites/testng-smoke.xml"
-
-                           }
-
+                }
+            }
+        }
 
         stage('Publish Test Results') {
             steps {
@@ -75,4 +72,5 @@ pipeline {
             archiveArtifacts artifacts: 'target/surefire-reports/**', allowEmptyArchive: true
         }
     }
+
 }
