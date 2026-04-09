@@ -15,21 +15,21 @@ public class WaitUtils {
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
-    public void waitForElementToBeVisible(By locator) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    public WebElement waitForElementToBeVisible(By locator) {
+       return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    public void waitForElementToBeClickable(By locator) {
-        wait.until(ExpectedConditions.elementToBeClickable(locator));
+    public WebElement waitForElementToBeClickable(By locator) {
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
-    public void waitForElementToBeClickable(WebElement element) {
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+    public WebElement waitForElementToBeClickable(WebElement element) {
+       return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
-    public void waitForElementToBePresent(By locator) {
-        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+    public WebElement waitForElementToBePresent(By locator) {
+       return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
-    public void waitForURLToBe(String URL) {
-            wait.until(ExpectedConditions.urlToBe(URL));
+    public boolean waitForURLToBe(String URL) {
+          return  wait.until(ExpectedConditions.urlToBe(URL));
     }
 
 

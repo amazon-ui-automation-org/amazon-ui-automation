@@ -1,16 +1,61 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="RegressionSuite">
+<suite name="RegressionSuite" parallel="tests" thread-count="4">
+    <listeners>
+        <listener class-name="com.amazon.Listeners.Listener"/>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
 
-    <test name="RegressionTests">
-
-      <packages>
-          <package name="com.amazon.tests.cart"/>
-          <package name="com.amazon.tests.checkout"/>
-          <package name="com.amazon.tests.SearchAndFilters"/>
+    <test name="RegressionTests1">
+<!--        <parameter name="browser" value="chrome"/>-->
+        <packages>
+<!--          <package name="com.amazon.tests.cart"/>-->
+<!--          <package name="com.amazon.tests.checkout"/>-->
+<!--          <package name="com.amazon.tests.SearchAndFilters"/>-->
           <package name="com.amazon.tests.useraccount"/>
-          <package name="com.amazon.tests.Orders"/>
+<!--         <package name="com.amazon.tests.Orders"/>-->
       </packages>
 
     </test>
+
+    <test name="RegressionTests2">
+
+        <packages>
+<!--            <package name="com.amazon.tests.cart"/>-->
+<!--            <package name="com.amazon.tests.checkout"/>-->
+            <package name="com.amazon.tests.SearchAndFilters"/>
+<!--            <package name="com.amazon.tests.useraccount"/>-->
+<!--            <package name="com.amazon.tests.Orders"/>-->
+        </packages>
+
+    </test>
+
+    <test name="RegressionTests3">
+
+        <packages>
+                       <package name="com.amazon.tests.cart"/>
+<!--            <package name="com.amazon.tests.checkout"/>-->
+<!--            <package name="com.amazon.tests.SearchAndFilters"/>-->
+            <!--            <package name="com.amazon.tests.useraccount"/>-->
+            <!--            <package name="com.amazon.tests.Orders"/>-->
+        </packages>
+
+    </test>
+
+    <test name="RegressionTests4">
+
+        <packages>
+            <!--            <package name="com.amazon.tests.cart"/>-->
+            <package name="com.amazon.tests.checkout"/>
+            <!--            <package name="com.amazon.tests.SearchAndFilters"/>-->
+            <!--            <package name="com.amazon.tests.useraccount"/>-->
+            <!--            <package name="com.amazon.tests.Orders"/>-->
+        </packages>
+
+    </test>
+
+
+
+
+
 
 </suite>

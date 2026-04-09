@@ -1,0 +1,29 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Amazon Smoke Suite" parallel="tests" thread-count="2">
+
+    <listeners>
+        <listener class-name="com.amazon.Listeners.Listener"/>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+
+    <!-- 💻 DESKTOP -->
+    <test name="Chrome Desktop Tests">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="device" value="desktop"/>
+
+        <classes>
+            <class name="com.amazon.tests.useraccount.LoginsmokeTest"/>
+        </classes>
+    </test>
+
+    <!-- 📱 MOBILE -->
+    <test name="Chrome Mobile Tests">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="device" value="mobile"/>
+
+        <classes>
+            <class name="com.amazon.tests.useraccount.LoginsmokeTest"/>
+        </classes>
+    </test>
+</suite>
