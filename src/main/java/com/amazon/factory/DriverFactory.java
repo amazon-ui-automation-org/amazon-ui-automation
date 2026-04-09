@@ -10,7 +10,7 @@ public class DriverFactory {
     public static void setDevice(String device) {
         deviceType.set(device);
     }
-
+//get device
     public static String getDevice() {
         return deviceType.get();
     }
