@@ -11,6 +11,10 @@ public class DriverFactory {
         deviceType.set(device);
     }
 
+
+//get device
+
+
     public static String getDevice() {
         return deviceType.get();
     }
