@@ -1,8 +1,12 @@
 package com.amazon.pages;
 
+import com.amazon.utils.MouseActions;
 import com.amazon.utils.WaitUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Reporter;
 
 public class LoginPage {
     private WebDriver driver;
@@ -14,69 +18,273 @@ public class LoginPage {
     private By hamburgerNav= By.id("nav-hamburger-menu");
     private By signOutButton = By.xpath("//a[text()='Sign Out']");
     private By signInSubmit = By.id("signInSubmit");
-    private By invalidFormatError = By.xpath("//div[contains(text(),'Invalid')]");
+    private By invalidMailFormatError = By.xpath("//div[contains(text(),'Invalid email')]");
+    private By invalidPhoneFormatError = By.xpath("//div[contains(text(),'Invalid mobile')]");
    // private By invalidPhoneValidation = By.xpath("//div[contains(text(),'Invalid mobile')]");
     private By mandatoryFieldError = By.xpath("//div[contains(text(),'Enter your mobile number')]");
     //private By blankPasswordValidation = By.xpath("//div[contains(text(),'Enter your password')]");
     private By authenticationError = By.xpath("//div[contains(.,'Your password is incorrect') and contains(@class,'a-alert-content')]");
+    private By usernameText = By.id("nav-link-accountList-nav-line-1");
+    private MouseActions actions;
+    private By signouthover= By.id("nav-item-signout");
+    private By accountsAndLists = By.xpath("//a[@aria-controls='nav-flyout-accountList']");
+   // private By sendOtpBtn=By.xpath("span[@aria-labelledby='auth-login-via-sms-otp-btn-announce']");
+    private By sendOtpBtn=By.id("auth-login-via-sms-otp-btn");
+    private By smsotpinput = By.xpath("input[@type-'tel']");
+    private By submitOtp = By.id("cvf-submit-otp-button");
+    private By signinOrCreateAccountText = By.xpath("//h1[contains(text(),'Sign in')]");
+   private By signupMobileInput = By.id("ap_phone_number");
+   private By signupPassword = By.id("ap_password");
+   private By signupName =  By.id("ap_customer_name");
+   private By verifyMobileNumber = By.xpath("//input[@aria-labelledby='auth-continue-announce']");
+   private By CreateAmazonAccount = By.xpath("input[aria-label='Verify OTP Button']");
+   private By forgotPasswordLink = By.partialLinkText("Forgot password?");
+   private By passwordAssistanceText = By.xpath("//h1[contains(.,'Password assistance')]");
+   private By proceedToCreateAccountButton = By.xpath("//input[@aria-labelledby='intention-submit-button-announce']");
+   private By invalidPhoneFormatErrorSignup = By.xpath("//div[contains(text(),'Please enter a valid mobile phone number ')]");
+   private By phoneInputSignup = By.id("ap_phone_number");
+   private By nameInputSignup = By.id("ap_customer_name");
+   private By passwordInputSignup = By.id("ap_password");
+   private By verifyMobileNumberBtnSignup = By.id("continue");
+   private By invalidPasswordFormatErrorSignUp = By.xpath("//div[@id='auth-password-invalid-password-alert']//div[contains(text(),'Passwords must be at least 6 characters.')]");
+   private By mandatoryPasswordFieldFormatErrorSignUp = By.xpath("//div[@id='auth-password-missing-alert']//div[contains(text(),'auth-password-missing-alert')]");
+    private By mandatoryNameFieldFormatErrorSignUp = By.xpath("//div[@id='auth-customerName-missing-alert']//div[contains(text(),'Enter your name')]");
+    private By mandatoryPhoneFieldFormatErrorSignUp = By.xpath("//div[@id='auth-phoneNumber-missing-alert']//div[contains(text(),'Enter your mobile number')]");
+    private By invalidOtpErrorSignUp = By.xpath("//div[contains(text(),'Invalid OTP.')]");
+    private By otpfieldSignup = By.id("cvf-input-code");
+    private By signInWithOtpBtn = By.xpath("//input[@aria-labelledby='cvf-signin-with-password-announce']");
 
-    public LoginPage(WebDriver driver){
+
+
+
+
+
+   public LoginPage(WebDriver driver){
         this.driver = driver;
         this.wait = new WaitUtils(driver);
+        this.actions= new MouseActions(driver);
     }
     public void clickSignIn(){
-        wait.waitForElementToBeClickable(signInButton);
-        driver.findElement(signInButton).click();
+        wait.waitForElementToBeClickable(signInButton).click();
+
+      //  driver.findElement(signInButton).click();
     }
     public void enterMailORNum(String mailNumInput){
-        wait.waitForElementToBeVisible(mobileInput);
-        driver.findElement(mobileInput).sendKeys(mailNumInput);
+        wait.waitForElementToBeVisible(mobileInput).sendKeys(mailNumInput);
+       // driver.findElement(mobileInput).sendKeys(mailNumInput);
     }
     public void clickContinue(){
-        wait.waitForElementToBeClickable(continueButton);
-       driver.findElement(continueButton).click();
+        wait.waitForElementToBeClickable(continueButton).click();
+     //  driver.findElement(continueButton).click();
     }
     public void enterPassword(String password){
-        wait.waitForElementToBeVisible(passwordInput);
-        driver.findElement(passwordInput).sendKeys(password);
+        wait.waitForElementToBeVisible(passwordInput).sendKeys(password);
+       // driver.findElement(passwordInput).sendKeys(password);
     }
     public void clicksiginafterlogin(){
-        wait.waitForElementToBeClickable(hamburgerNav);
-        driver.findElement(hamburgerNav).click();
+        wait.waitForElementToBeClickable(hamburgerNav).click();
+       // driver.findElement(hamburgerNav).click();
+    }
+
+    public Boolean isSignoutVisible(){
+
+       WebElement accandList= wait.waitForElementToBeClickable(accountsAndLists);
+
+        actions.mouseHover(accandList);
+       return wait.waitForElementToBeVisible(signOutButton).isDisplayed();
+
+
     }
     public Boolean locateSignoutButton(){
-        wait.waitForElementToBeVisible(signOutButton);
+       return wait.waitForElementToBeVisible(signOutButton).isDisplayed();
 
-        return driver.findElement(signOutButton).isDisplayed();
+      //  return driver.findElement(signOutButton).isDisplayed();
     }
+
+public void triggerOtp(){
+        wait.waitForElementToBeClickable(sendOtpBtn).click();
+}
+
+public void enterOtp(String otp){
+    wait.waitForElementToBeClickable(smsotpinput).sendKeys(otp);
+}
+public void submitOtp(){
+        wait.waitForElementToBeClickable(submitOtp).click();
+}
+
     public void signInSubmit(){
-        wait.waitForElementToBeClickable(signInSubmit);
-            driver.findElement(signInSubmit).click();
+        wait.waitForElementToBeClickable(signInSubmit).click();
+           // driver.findElement(signInSubmit).click();
     }
     public boolean passwordInputVisibilty(){
-        wait.waitForElementToBeVisible(passwordInput);
-        return driver.findElement(passwordInput).isDisplayed();
+      return  wait.waitForElementToBeVisible(passwordInput).isDisplayed();
+     //   return driver.findElement(passwordInput).isDisplayed();
     }
-    public boolean isInvalidFormatErrorDisplayed(){
-        wait.waitForElementToBeVisible(invalidFormatError);
-        return driver.findElement(invalidFormatError).isDisplayed();
+    public boolean isInvalidEmailFormatErrorDisplayed(){
+     return   wait.waitForElementToBeVisible(invalidMailFormatError).isDisplayed();
+      //  return driver.findElement(invalidFormatError).isDisplayed();
     }
+
+    public boolean isInvalidPhoneFormatErrorDisplayed(){
+        return   wait.waitForElementToBeVisible(invalidPhoneFormatError).isDisplayed();
+        //  return driver.findElement(invalidFormatError).isDisplayed();
+    }
+
 //    public boolean invalidPhoneValidation(){
 //        wait.waitForElementToBeVisible(invalidPhoneValidation);
 //        return driver.findElement(invalidPhoneValidation).isDisplayed();
 //    }
 
     public boolean isMandatoryFieldErrorDisplayed(){
-        wait.waitForElementToBeVisible(mandatoryFieldError);
-        return driver.findElement(mandatoryFieldError).isDisplayed();
+      return  wait.waitForElementToBeVisible(mandatoryFieldError).isDisplayed();
+      //  return driver.findElement(mandatoryFieldError).isDisplayed();
     }
 //    public boolean blankPasswordValidation(){
 //        wait.waitForElementToBeVisible(blankPasswordValidation);
 //        return driver.findElement(blankPasswordValidation).isDisplayed();
 //    }
     public boolean isAuthenticationErrorDisplayed(){
-        wait.waitForElementToBeVisible(authenticationError);
-        return driver.findElement(authenticationError).isDisplayed();
+       return wait.waitForElementToBeVisible(authenticationError).isDisplayed();
+      //  return driver.findElement(authenticationError).isDisplayed();
     }
 
-}
+    public String usernameDisplayed(){
+      String un= wait.waitForElementToBeVisible(usernameText).getText().toLowerCase();
+        Reporter.log("Username: "+un,true);
+        return un;
+    }
+
+    public void clickSignout(){
+        wait.waitForElementToBeClickable(signOutButton).click();
+    }
+
+    public Boolean isSignInPageVisible(){
+      return  wait.waitForElementToBeVisible(signinOrCreateAccountText).isDisplayed();
+    }
+
+
+    public void proceedToCreateAcoount(){
+        wait.waitForElementToBeClickable(proceedToCreateAccountButton).click();
+    }
+
+    public void enterMobileNumberForSignup(String newmobileNumber){
+
+        wait.waitForElementToBeClickable(signupMobileInput).sendKeys(newmobileNumber);
+
+    }
+    public void enterNameForSignup(String newName){
+
+        wait.waitForElementToBeClickable(signupName).sendKeys(newName);
+
+    }
+    public void enterNewpassword(String newPassword){
+
+        wait.waitForElementToBeClickable(signupPassword).sendKeys(newPassword);
+
+    }
+
+    public void clickVerifyPhoneNumber(){
+
+        wait.waitForElementToBeClickable(verifyMobileNumber).click();
+
+    }
+
+    public void enterMobileNumberOtpForSignUp(){
+
+    }
+
+    public void clickCreateAmazonAccount(){
+
+        wait.waitForElementToBeClickable(proceedToCreateAccountButton).click();
+
+        }
+
+        public void navigateToSignInPage(){
+
+            clickSignIn();
+
+
+        }
+
+        public void clickForgotPasswordLink(){
+        wait.waitForElementToBeClickable(forgotPasswordLink).click();
+        }
+
+        public Boolean isPasswordAssistancePageVisible(){
+
+        return wait.waitForElementToBeVisible(passwordAssistanceText).isDisplayed();
+
+        }
+
+
+        public void navigateToSignUpPage(String newmail){
+        navigateToSignInPage();
+        enterMailORNum(newmail);
+        proceedToCreateAcoount();
+
+        }
+
+        public Boolean isErrorMessageForInvalidPhoneNumberOnSignup(){
+   return wait.waitForElementToBeVisible(invalidPhoneFormatErrorSignup).isDisplayed();
+        };
+
+    public Boolean isErrorMessageForInvalidPasswordOnSignup(){
+        return wait.waitForElementToBeVisible(invalidPasswordFormatErrorSignUp).isDisplayed();
+    }
+
+    public void enterOtpForSignup(String otp){
+        wait.waitForElementToBeClickable(otpfieldSignup).sendKeys(otp);
+    }
+
+
+    public Boolean isMandatoryPhoneNumberFieldErrorMessageDispalyed(){
+        return wait.waitForElementToBeVisible(mandatoryPhoneFieldFormatErrorSignUp).isDisplayed();
+    }
+
+    public Boolean isMandatoryNameFieldErrorMessageDispalyed(){
+        return wait.waitForElementToBeVisible(mandatoryNameFieldFormatErrorSignUp).isDisplayed();
+    }
+
+    public Boolean isMandatoryPasswordFieldErrorMessageDispalyed(){
+        return wait.waitForElementToBeVisible(mandatoryPasswordFieldFormatErrorSignUp).isDisplayed();
+    }
+
+    public void triggerOtpOnSignUp(String newmail,String newnum,String newname,String newpassword){
+        navigateToSignUpPage(newmail);
+        enterMobileNumberForSignup(newnum);
+        enterNameForSignup(newname);
+        enterNewpassword(newpassword);
+        clickVerifyPhoneNumber();
+    }
+
+    public Boolean isInvalidOtpMessageDispalyed(){
+        return wait.waitForElementToBeVisible(invalidOtpErrorSignUp).isDisplayed();
+    }
+
+    public Boolean isMandatoryOTPFieldMessageDispalyed(){
+
+
+       String validationMessage= wait.waitForElementToBeVisible(otpfieldSignup).getAttribute("validationMessage");
+       return  validationMessage.contains("Please fill out this field");
+    }
+
+    public void clickSendOtpSignIn(){
+        wait.waitForElementToBeClickable(signInWithOtpBtn).click();
+    }
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
