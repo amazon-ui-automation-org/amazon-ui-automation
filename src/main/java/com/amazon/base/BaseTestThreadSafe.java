@@ -17,14 +17,18 @@ import org.testng.annotations.*;
 import java.util.HashMap;
 import java.util.Map;
 
-
+// comments added
 @Listeners({AllureTestNg.class, Listener.class})
 public class  BaseTestThreadSafe {
 
-    Logger log = LogManager.getLogger(BaseTestThreadSafe.class);
+   private static Logger log = LogManager.getLogger(BaseTestThreadSafe.class);
+    private String baseUrl;
 
-
-
+    @BeforeTest
+        public void environmentSetup(){
+        String env = System.getProperty("env", "qa");
+         baseUrl = ConfigReader.get(env + ".url");
+        }
 
 
     @Parameters({"browser", "device"})
@@ -32,7 +36,7 @@ public class  BaseTestThreadSafe {
     public void setup(@Optional String browserParam,
                       @Optional String deviceParam) {
 
-        String env = System.getProperty("env", "qa");
+        //String env = System.getProperty("env", "qa");
         log.info("Entering email: {}", browserParam);
         log.info("Entering device: {}", deviceParam);
         // Priority: XML param → System property → default
@@ -42,7 +46,7 @@ public class  BaseTestThreadSafe {
         String device = deviceParam != null && !deviceParam.isEmpty()  ? deviceParam :
                 System.getProperty("device", "desktop");
 
-        String baseUrl = ConfigReader.get(env + ".url");
+
 
         WebDriver driver;
         DriverFactory.setDevice(device);
@@ -66,6 +70,7 @@ public class  BaseTestThreadSafe {
 //                options.addArguments("--headless=new");
 //                options.addArguments("--no-sandbox");
 //                options.addArguments("--disable-dev-shm-usage");
+                //  options.addArguments("--window-size=1920,1080");
                 driver = new ChromeDriver(options);
                 break;
 
