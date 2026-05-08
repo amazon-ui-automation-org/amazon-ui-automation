@@ -30,6 +30,7 @@ public class ExcelUtil {
 
             wb.close();
             fis.close();
+            //always catch IOException for FileInputStream
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

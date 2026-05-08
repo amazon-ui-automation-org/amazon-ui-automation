@@ -27,3 +27,9 @@
         </classes>
     </test>
 </suite>
+
+<!--<groups>-->
+<!--<run>-->
+<!--    <include name="smoke"/>-->
+<!--</run>-->
+<!--</groups>-->

@@ -3,6 +3,7 @@ package com.amazon.tests.SearchAndFilters;
 import com.amazon.base.BaseTest;
 import com.amazon.pages.searchAndFilters;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -58,6 +59,14 @@ public class FilterSmoke  extends BaseTest {
         sf.selectBrandFilter(brand);
         Assert.assertTrue(sf.isBrandFilterSelected(brand),"Brand filter not functioning");
       //  Thread.sleep(4000);
+    }
+
+    
+
+    @AfterMethod
+    public void afterMethod() {
+
+
     }
 
 }

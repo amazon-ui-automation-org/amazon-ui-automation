@@ -7,6 +7,8 @@ import com.amazon.factory.DriverFactory;
 import com.amazon.pages.LoginPage;
 import com.amazon.pages.LoginPageMob;
 import com.amazon.utils.ConfigReader;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -29,7 +31,7 @@ public class LoginsmokeTest extends BaseTestThreadSafe {
     String newNum =ConfigReader.get("newNum");
 
 
-
+     @Severity(SeverityLevel.BLOCKER)
     @Test(groups = "smoke",priority = 2)
     public void verifyUserCanLoginWithRegisteredPhoneNumAndPassword() {
 
@@ -194,5 +196,10 @@ public class LoginsmokeTest extends BaseTestThreadSafe {
     log.info("Signup flow completed successfully for user: {}", newName);
 
 }
+
+    @Test(groups = "smoke", priority = 6)
+    public void Verifyfail() {
+        Assert.fail("failed deliberately");
+    }
 
 }

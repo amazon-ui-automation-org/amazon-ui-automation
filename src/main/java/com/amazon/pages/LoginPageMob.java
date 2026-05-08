@@ -78,16 +78,20 @@ public class LoginPageMob {
 
       //  driver.findElement(signInButton).click();
     }
+    @Step("Enter name or mail")
     public void enterMailORNum(String mailNumInput){
 
 
         wait.waitForElementToBeVisible(mobileInput).sendKeys(mailNumInput);
        // driver.findElement(mobileInput).sendKeys(mailNumInput);
     }
+
+    @Step("Click continue")
     public void clickContinue(){
         wait.waitForElementToBeClickable(continueButton).click();
      //  driver.findElement(continueButton).click();
     }
+    @Step("Enter password")
     public void enterPassword(String password) {
 
         if (BaseTestThreadSafe.isMobile()) {
@@ -99,6 +103,8 @@ public class LoginPageMob {
             // driver.findElement(passwordInput).sendKeys(password);
         }
     }
+
+    @Step("Click signin after login")
     public void clicksiginafterlogin() {
 
         if (BaseTestThreadSafe.isMobile()) {
@@ -108,6 +114,8 @@ public class LoginPageMob {
             // driver.findElement(hamburgerNav).click();
         }
     }
+
+    @Step("Check signout visible")
     public Boolean isSignoutVisible(){
 
        WebElement accandList= wait.waitForElementToBeClickable(accountsAndLists);
@@ -117,12 +125,15 @@ public class LoginPageMob {
 
 
     }
+
+    @Step("Check signout visible")
     public Boolean locateSignoutButton(){
        return wait.waitForElementToBeVisible(signOutButton).isDisplayed();
 
       //  return driver.findElement(signOutButton).isDisplayed();
     }
 
+    @Step("Click send otp button")
 public void triggerOtp() {
     if (BaseTestThreadSafe.isMobile()) {
         wait.waitForElementToBeClickable(sendOtpBtnMob).click();
@@ -130,10 +141,11 @@ public void triggerOtp() {
         wait.waitForElementToBeClickable(sendOtpBtn).click();
     }
 }
-@Step
+@Step("Enter otp")
 public void enterOtp(String otp){
     wait.waitForElementToBeClickable(smsotpinput).sendKeys(otp);
 }
+    @Step("Submit otp")
 public void submitOtp(){
         wait.waitForElementToBeClickable(submitOtp).click();
 }
@@ -142,15 +154,19 @@ public void submitOtp(){
         wait.waitForElementToBeClickable(signInSubmit).click();
            // driver.findElement(signInSubmit).click();
     }
+
+    @Step("Check password input visibility")
     public boolean passwordInputVisibilty(){
       return  wait.waitForElementToBeVisible(passwordInput).isDisplayed();
      //   return driver.findElement(passwordInput).isDisplayed();
     }
+    @Step("Check Invalid Email Format Error Displayed ")
     public boolean isInvalidEmailFormatErrorDisplayed(){
      return   wait.waitForElementToBeVisible(invalidMailFormatError).isDisplayed();
       //  return driver.findElement(invalidFormatError).isDisplayed();
     }
 
+    @Step("Check Invalid Phone Format Error Displayed ")
     public boolean isInvalidPhoneFormatErrorDisplayed(){
         return   wait.waitForElementToBeVisible(invalidPhoneFormatError).isDisplayed();
         //  return driver.findElement(invalidFormatError).isDisplayed();
@@ -185,6 +201,7 @@ public void submitOtp(){
             return un;
         }
     }
+    @Step("Click signout")
     public void clickSignout(){
         wait.waitForElementToBeClickable(signOutButton).click();
     }

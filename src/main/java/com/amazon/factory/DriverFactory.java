@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 public class DriverFactory {
 
-    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static  ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     private static  ThreadLocal<String> deviceType = new ThreadLocal<>();
 
     public static void setDevice(String device) {
